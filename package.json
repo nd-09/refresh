@@ -1,0 +1,27 @@
+{
+  "name": "letsreact",
+  "version": "1.0.0",
+  "description": "Refresh and Learn",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nd-09/refresh.git"
+  },
+  "author": "Navdeep Chovatiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nd-09/refresh/issues"
+  },
+  "homepage": "https://github.com/nd-09/refresh#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

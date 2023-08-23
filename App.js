@@ -1,9 +1,29 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-const head = React.createElement("div",{id:"parent"} ,
-React.createElement("div",{id:"nestedDemo"},
-[React.createElement("h1",{id:"child",key:"sibling1"},"This is your JS demonstrated by REACT!"),React.createElement("h2",{id:"sibling",key:"sibling2"},"You are safe brother")]))
-const dadu = ReactDOM.createRoot(document.getElementById("container"))
-console.log(head)
-/*{ it only logs a javascript object and not a h1 tag and the curly braces indicates the props thats how react works }*/
-dadu.render(head)
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+{
+  /* this is your react element */
+}
+const elem = <h2>I am react element</h2>
+const Head = () => (
+  <h1 className="child">Component composition using React Components</h1>
+
+)
+
+
+{
+  /* And this is a react component */
+}
+const HeaderComponent = () => ( 
+    <>
+      <h1 className="parent">This is a React Functional component</h1>
+    <Head/>
+    Haven't use this way of calling a react component(see the console) something that i didn't knew prior Now I know I know!
+    ONE LEARNS NEW THING EVERYDAY.
+    {console.log("{ Head() },","One way to call react component")}
+    {Head()}
+    {elem}
+    </>
+)
+const root = ReactDOM.createRoot(document.getElementById("container"));
+root.render(<HeaderComponent />);

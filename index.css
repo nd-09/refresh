@@ -1,6 +1,6 @@
-#parent{
+.parent{
 color: burlywood;
 }
-#child{
+.child{
     color:cadetblue
 }

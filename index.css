@@ -6,6 +6,7 @@
 }
 .go-green-header {
   display: flex;
+  margin:10px;
   justify-content: space-between;
   background-color: aliceblue;
   border: 1px solid black;
@@ -41,8 +42,12 @@
   background-color:rgb(225, 239, 239);
 
 }
-.search {
-  padding: 10px;
+.filter_btn {
+  padding:10px;
+  margin: 10px;
+}
+.filter_btn:hover{
+cursor: pointer;
 }
 .pro-logo {
   width: 100%;

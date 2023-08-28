@@ -1,7 +1,7 @@
 import { CARD_URL } from "../assets/images";
 
 const ProComponent = (props) => {
-    const { name, cuisines, costForTwo, avgRating, cloudinaryImageId,areaName } = props.res?.info;
+    const { name, cuisines, costForTwo, avgRating, cloudinaryImageId,areaName } = props?.res?.info;
     return (
       <div className="pro-card">
         <img

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { HEADER_IMG } from "../assets/images";
 
 const HeaderGoGreen = () => {
+  const [toggleLogin,setToggleLogin]=useState("Login")
     return (
       <div className="go-green-header">
         <div>
@@ -12,6 +14,7 @@ const HeaderGoGreen = () => {
             <li>Categories</li>
             <li>About us</li>
             <li>Contact us</li>
+            <button className="toggle-login" onClick={()=>{toggleLogin==="Login"? setToggleLogin("Logout"):setToggleLogin("Login") }}> {toggleLogin} </button>
           </ul>
         </div>
       </div>

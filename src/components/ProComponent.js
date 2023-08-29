@@ -1,4 +1,4 @@
-import { CARD_URL } from "../assets/images";
+import { CARD_URL, LOCATION_URL,RATING_URL } from "../assets/images";
 
 const ProComponent = (props) => {
     const { name, cuisines, costForTwo, avgRating, cloudinaryImageId,areaName } = props?.res?.info;
@@ -13,10 +13,13 @@ const ProComponent = (props) => {
           alt="pro image"
         ></img>
         <h3 className="pro-name">{name}</h3>
-        <h4>{cuisines.join(", ")}</h4>
-        <h6>{areaName}</h6>
+        <h5>{cuisines.join(", ")}</h5>
+        <div >
+
+        <h6> <img className="location-logo" src={LOCATION_URL} /> {areaName}</h6>
+        </div>
         <h5 className="pro-price">{costForTwo}</h5>
-        <h6 className="pro-rating"> {avgRating}</h6>
+        <h6 className="pro-rating"><img className="rating-logo" src={RATING_URL} />  {avgRating}</h6>
       </div>
     );
   };

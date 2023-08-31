@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderGoGreen from "./components/HeaderGoGreen.js";
+import AboutUs from "./pages/AboutUs.js";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import ConatactUs from "./pages/ContactUs.js";
+import Footer from "./components/Footer.js";
 import GoGreenBody from "./components/GoGreenBody.js";
+import RestaurantDetails from "./components/RestaurantDetails.js";
 {
   /* this is your react element */
 }
@@ -24,15 +29,38 @@ const HeaderComponent = () => (
   </>
 );
 
-
-
 const GoGreenComponent = () => {
   return (
     <>
       <HeaderGoGreen />
-      <GoGreenBody />
+      <Outlet />
+      <Footer />
     </>
   );
 };
+const createRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <GoGreenComponent />,
+    children: [
+      {
+        path: "/",
+        element: <GoGreenBody />,
+      },
+      {
+        path: "/about",
+        element: <AboutUs />,
+      },
+      {
+        path: "/contact",
+        element: <ConatactUs />,
+      },
+      {
+        path: "/details/:restaurant_id",
+        element: <RestaurantDetails />,
+      },
+    ],
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById("container"));
-root.render(<GoGreenComponent />);
+root.render(<RouterProvider router={createRouter} />);

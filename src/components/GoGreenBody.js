@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ProComponent from "./ProComponent";
 import ShimmerUI from "./ShimmerUi";
 import SearchFilter from "./SearchFilter";
+import { LISTING_URL } from "../helpers/constants";
 
 const GoGreenBody = () => {
   const [topRes, setTopRes] = useState([]);
-  const[filtered,setFiltered]=useState([]);
+  const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     listingData();
   }, []);
   const listingData = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const response = await fetch(LISTING_URL);
     const listResponse = await response.json();
     setTopRes(
       listResponse?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
@@ -24,28 +24,34 @@ const GoGreenBody = () => {
     );
   };
 
-  return (!topRes || topRes.length === 0)? <ShimmerUI/> :(
+  return !topRes || topRes.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <div className="body-contain">
       <div className="filter-container">
-      <SearchFilter data={topRes} filterVal={(val)=>setFiltered(val)}/>
+        <SearchFilter data={topRes} filterVal={(val) => setFiltered(val)} />
 
-      <div className="filter">
-        <button
-          className="filter_btn"
-          onClick={() => {
-            const filtered = topRes.filter(
-              (topRes) => topRes.info.avgRating > 4.3
-            );
-            setFiltered(filtered);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-      </div>
+        <div className="filter">
+          <button
+            className="filter_btn"
+            onClick={() => {
+              const filtered = topRes.filter(
+                (topRes) => topRes.info.avgRating > 4.3
+              );
+              setFiltered(filtered);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
       <div className="pro-container">
         {filtered?.map((restaurant) => {
-          return <ProComponent key={restaurant.info.id} res={restaurant} />;
+          return (
+            <Link to={"/details/" + restaurant.info.id} key={restaurant.info.id} style={{ textDecoration: "none", color: "black" }}>
+              <ProComponent res={restaurant} />
+            </Link>
+          );
         })}
       </div>
     </div>

@@ -1,9 +1,9 @@
-import { CARD_URL, LOCATION_URL,RATING_URL } from "../assets/images";
+import { CARD_URL, LOCATION_URL,RATING_URL } from "../helpers/constants";
 
 const ProComponent = (props) => {
     const { name, cuisines, costForTwo, avgRating, cloudinaryImageId,areaName } = props?.res?.info;
     return (
-      <div className="pro-card">
+      <div className="pro-card" >
         <img
           className="pro-logo"
           src={

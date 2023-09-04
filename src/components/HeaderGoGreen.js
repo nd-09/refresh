@@ -5,7 +5,7 @@ import useStatusCheck from "../utils/helpers/useStatusCheck";
 
 const HeaderGoGreen = () => {
   const [toggleLogin, setToggleLogin] = useState("Login");
-  const status= useStatusCheck();
+  const status = useStatusCheck();
   return (
     <div className="go-green-header">
       <div>
@@ -13,7 +13,7 @@ const HeaderGoGreen = () => {
       </div>
       <div className="nav-items">
         <ul className="items">
-          {status? <p>🟢</p>:<p>🔴</p>}
+          {status ? <p>🟢</p> : <p>🔴</p>}
           <li>
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
               Home
@@ -35,7 +35,12 @@ const HeaderGoGreen = () => {
               Contact us{" "}
             </Link>
           </li>
-          <li>Cart</li>
+          <li><Link
+            to="/buyAndPlant"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Buy and Grow
+          </Link></li>
           <button
             className="toggle-login"
             onClick={() => {

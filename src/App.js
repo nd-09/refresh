@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderGoGreen from "./components/HeaderGoGreen.js";
 import AboutUs from "./pages/AboutUs.js";
@@ -28,7 +28,7 @@ const HeaderComponent = () => (
     {elem}
   </>
 );
-
+const BuyandGrow=lazy(()=>{return import("./pages/BuyandGrow.js")})
 const GoGreenComponent = () => {
   return (
     <>
@@ -59,6 +59,10 @@ const createRouter = createBrowserRouter([
         path: "/details/:restaurant_id",
         element: <RestaurantDetails />,
       },
+      {
+        path:"/buyAndPlant",
+        element:<Suspense fallback={<h1>Just a display of dynamic bundling using lazy loading/On demand loading/Dynamic Bundling</h1>}><BuyandGrow/></Suspense>
+      }
     ],
   },
 ]);

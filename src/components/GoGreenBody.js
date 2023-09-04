@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ProComponent from "./ProComponent";
 import ShimmerUI from "./ShimmerUi";
 import SearchFilter from "./SearchFilter";
-import { LISTING_URL } from "../helpers/constants";
+import { LISTING_URL } from "../utils/constants";
 
 const GoGreenBody = () => {
   const [topRes, setTopRes] = useState([]);
@@ -15,11 +15,11 @@ const GoGreenBody = () => {
     const response = await fetch(LISTING_URL);
     const listResponse = await response.json();
     setTopRes(
-      listResponse?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+      listResponse?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setFiltered(
-      listResponse?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+      listResponse?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };

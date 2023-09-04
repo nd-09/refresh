@@ -1,4 +1,4 @@
-import { CARD_URL, LOCATION_URL,RATING_URL } from "../helpers/constants";
+import { CARD_URL, LOCATION_URL,RATING_URL } from "../utils/constants";
 
 const ProComponent = (props) => {
     const { name, cuisines, costForTwo, avgRating, cloudinaryImageId,areaName } = props?.res?.info;

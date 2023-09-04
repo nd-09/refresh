@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { HEADER_IMG } from "../helpers/constants";
+import { HEADER_IMG } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useStatusCheck from "../utils/helpers/useStatusCheck";
 
 const HeaderGoGreen = () => {
   const [toggleLogin, setToggleLogin] = useState("Login");
+  const status= useStatusCheck();
   return (
     <div className="go-green-header">
       <div>
@@ -11,6 +13,7 @@ const HeaderGoGreen = () => {
       </div>
       <div className="nav-items">
         <ul className="items">
+          {status? <p>🟢</p>:<p>🔴</p>}
           <li>
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
               Home

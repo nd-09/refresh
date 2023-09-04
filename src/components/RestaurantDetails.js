@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
-import { DISH_URL, LOCATION_URL, MENU_URL, RATING_URL } from "../helpers/constants";
+import { DISH_URL, LOCATION_URL, MENU_URL, RATING_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import ShimmerUI from "./ShimmerUi";
+import useFetchMenu from "../utils/helpers/useFetchMenu";
 
 const RestaurantDetails = () => {
   const { restaurant_id } = useParams();
-  const [menu, setMenu] = useState([]);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_URL + restaurant_id);
-    const jsonData = await data.json();
-    setMenu(jsonData?.data?.cards);
-  };
+  const menu = useFetchMenu(restaurant_id);
   const restaurant = menu[0]?.card?.card?.info;
   const menuItems = menu[2]?.groupedCard.cardGroupMap?.REGULAR?.cards?.slice(1);
   return !menu || menu.length === 0 ? (

@@ -12,40 +12,40 @@ const RestaurantDetails = () => {
     <ShimmerUI />
   ) : (
     <div className="res-details-container">
-     <div className="res-details">
+     <div className="res-details m-2 p-2 shadow-sm">
 
-      <h1>{restaurant.name}</h1>
-      <p> {restaurant.cuisines.join(", ")}</p>
-      <h6>
-        <img className="rating-logo" src={RATING_URL} />{" "}
+      <h1 className="text-3xl font-extrabold">{restaurant.name}</h1>
+      <p className="text-md font-semibold"> {restaurant.cuisines.join(", ")}</p>
+      <h6 className=" flex flex-wrap">
+        <img className="rating-logo w-3 h-3 mt-1" src={RATING_URL} />{" "}
         {restaurant.avgRatingString}
         {" || " + restaurant.totalRatingsString}
       </h6>
-      <h5>
-        <img className="location-logo" src={LOCATION_URL} />
+      <h5 className="flex flex-wrap ">
+        <img className="location-logo w-3 h-3 mt-1" src={LOCATION_URL} />
         {" " + restaurant.areaName + ", " + restaurant.city}
       </h5>
-      <h5>{restaurant.costForTwoMessage}</h5>
+      <h5 className="font-semibold">{restaurant.costForTwoMessage}</h5>
      </div>
-      <ul>
+      <ul className="border border-solid border-black mx-5 px-5">
         {menuItems &&
           menuItems.map((obj,index) => {
             const { itemCards } = obj.card.card;
             return (
               <div key={index} className="menu-container">
-                <h3>{obj.card.card.title}</h3>
+                <h3 className="text-lg font-bold m-2 p-2 border border-b-black bg-orange-50">{obj.card.card.title}</h3>
                 {itemCards &&
                   itemCards.map((items) => {
                     return (
-                      <div key={items.card.info.id} className="dish-details">
+                      <div key={items.card.info.id} className="dish-details p-5 hover:border border-solid border-black hover:scale-100">
                         {items.card.info.imageId? 
-                        <img src= {DISH_URL+ items.card.info.imageId} alt="No image uploaded" className="dish-img"/>
+                        <img src= {DISH_URL+ items.card.info.imageId} alt="No image uploaded" className="dish-img w-64 m-5 p-5 hover:scale-125"/>
                         :    
                         <img alt="No preview available" className="dish-img"/>
                     }
-                        <h4 >{items.card.info.name}</h4>
+                        <h4 className="font-bold" >{items.card.info.name}</h4>
                         <p>{items.card.info.description}</p>
-                        <h6 style={{marginTop:"0px",marginBottom:"10px"}}>&#8377; {items.card.info.price/100 }</h6>
+                        <h6 className="font-semibold"style={{marginTop:"0px",marginBottom:"10px"}}>&#8377; {items.card.info.price/100 }</h6>
                       </div>
                     );
                   })}

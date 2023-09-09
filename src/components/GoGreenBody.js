@@ -28,12 +28,12 @@ const GoGreenBody = () => {
     <ShimmerUI />
   ) : (
     <div className="body-contain">
-      <div className="filter-container">
+      <div className="filter-container flex justify-end">
         <SearchFilter data={topRes} filterVal={(val) => setFiltered(val)} />
 
         <div className="filter">
           <button
-            className="filter_btn"
+            className="filter_btn border border-solid border-green-700 mx-2 px-1 rounded  bg-green-400"
             onClick={() => {
               const filtered = topRes.filter(
                 (topRes) => topRes.info.avgRating > 4.3
@@ -45,7 +45,7 @@ const GoGreenBody = () => {
           </button>
         </div>
       </div>
-      <div className="pro-container">
+      <div className="pro-container flex flex-wrap" >
         {filtered?.map((restaurant) => {
           return (
             <Link to={"/details/" + restaurant.info.id} key={restaurant.info.id} style={{ textDecoration: "none", color: "black" }}>

@@ -6,7 +6,7 @@ const ProComponent = (props) => {
   return (
     <div className="pro-card flex flex-wrap w-60 hover:border border-solid border-green-700 m-2 p-2 rounded-md bg-stone-50 hover:bg-slate-100">
       <img
-        className="pro-logo "
+        className="pro-logo rounded-3xl"
         src={CARD_URL + cloudinaryImageId}
         alt="pro image"
       ></img>
@@ -26,4 +26,14 @@ const ProComponent = (props) => {
     </div>
   );
 };
+export const pureVegRestaurants=(ProComponent)=>{
+return (props)=>{
+return(
+  <>
+  <label className="bg-green-600 text-white absolute px-2 m-2 rounded-lg">Pure Veg</label>
+  <ProComponent {...props}/>
+  </>
+)
+}
+}
 export default ProComponent;

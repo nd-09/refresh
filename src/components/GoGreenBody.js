@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ProComponent from "./ProComponent";
+import ProComponent, { pureVegRestaurants } from "./ProComponent";
 import ShimmerUI from "./ShimmerUi";
 import SearchFilter from "./SearchFilter";
 import { LISTING_URL } from "../utils/constants";
@@ -23,7 +23,7 @@ const GoGreenBody = () => {
         ?.restaurants
     );
   };
-
+const PureVeg = pureVegRestaurants(ProComponent);
   return !topRes || topRes.length === 0 ? (
     <ShimmerUI />
   ) : (
@@ -49,7 +49,8 @@ const GoGreenBody = () => {
         {filtered?.map((restaurant) => {
           return (
             <Link to={"/details/" + restaurant.info.id} key={restaurant.info.id} style={{ textDecoration: "none", color: "black" }}>
-              <ProComponent res={restaurant} />
+             {restaurant.info.veg  ? <PureVeg res={restaurant}/>: <ProComponent res={restaurant} />}
+              
             </Link>
           );
         })}

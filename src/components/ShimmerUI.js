@@ -3,7 +3,7 @@ import ShimmerDetails from "./ShimmerDetails";
 const ShimmerUI = () => {
   return (
     <>
-      <div className="shimmer-container">
+      <div className="shimmer-container flex flex-wrap">
         <div className="shimmer-cards">
           <ShimmerDetails />
         </div>

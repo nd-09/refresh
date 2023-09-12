@@ -28,7 +28,7 @@ const PureVeg = pureVegRestaurants(ProComponent);
     <ShimmerUI />
   ) : (
     <div className="body-contain">
-      <div className="filter-container flex justify-end">
+      <div className="filter-container flex justify-end m-2 p-2">
         <SearchFilter data={topRes} filterVal={(val) => setFiltered(val)} />
 
         <div className="filter">

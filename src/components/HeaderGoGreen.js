@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HEADER_IMG } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useStatusCheck from "../utils/helpers/useStatusCheck";
+import UserContext from "../utils/helpers/UserContext";
 
 const HeaderGoGreen = () => {
   const [toggleLogin, setToggleLogin] = useState("Login");
   const status = useStatusCheck();
+  const {userName,setUser}= useContext(UserContext)
   return (
     <div className="flex justify-between bg-green-100 m-1 items-center shadow-inner">
       <div>
@@ -43,12 +45,14 @@ const HeaderGoGreen = () => {
               Buy and Grow
             </Link>
           </li>
+          <li>{userName}</li>
           <button
             className="toggle-login mx-4 border border-solid border-lime-700 px-3 rounded  bg-green-400"
             onClick={() => {
               toggleLogin === "Login"
                 ? setToggleLogin("Logout")
                 : setToggleLogin("Login");
+                setUser("Navdeep");
             }}
           >
             {" "}

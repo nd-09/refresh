@@ -9,7 +9,7 @@ const RestaurantDetails = () => {
   const { restaurant_id } = useParams();
   const menu = useFetchMenu(restaurant_id);
   const [controlIndex, setControlIndex] = useState(0);
-  const [toggle,setToggle]=useState(true);
+  const [toggle, setToggle] = useState(true);
   const restaurant = menu[0]?.card?.card?.info;
   const menuItems = menu[2]?.groupedCard.cardGroupMap?.REGULAR?.cards?.filter(
     (dish) =>
@@ -39,14 +39,14 @@ const RestaurantDetails = () => {
       </div>
       <div className="border border-solid border-b-gray-100 p-2">
         {menuItems &&
-          menuItems.map((obj, index) => {
+          menuItems?.map((obj, index) => {
             return (
               <RestaurantMenuAccordian
                 key={index}
                 categories={[obj]}
-                showList={index === controlIndex && toggle}
-                setControlIndex={()=>setControlIndex(index)}
-                setToggle={()=>setToggle(!toggle)}
+                showList={index === controlIndex ? toggle : false}
+                setControlIndex={() => setControlIndex(index)}
+                setToggle={() => setToggle(!toggle)}
               />
             );
           })}

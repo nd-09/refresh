@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderGoGreen from "./components/HeaderGoGreen.js";
 import AboutUs from "./pages/AboutUs.js";
@@ -7,6 +7,7 @@ import ConatactUs from "./pages/ContactUs.js";
 import Footer from "./components/Footer.js";
 import GoGreenBody from "./components/GoGreenBody.js";
 import RestaurantDetails from "./components/RestaurantDetails.js";
+import UserContext from "./utils/helpers/UserContext.js";
 {
   /* this is your react element */
 }
@@ -30,12 +31,13 @@ const HeaderComponent = () => (
 );
 const BuyandGrow=lazy(()=>{return import("./pages/BuyandGrow.js")})
 const GoGreenComponent = () => {
+  const [user,setUser]=useState("Default user")
   return (
-    <>
+    <UserContext.Provider value={{userName:user,setUser}}>
       <HeaderGoGreen />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 const createRouter = createBrowserRouter([

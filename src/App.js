@@ -8,6 +8,8 @@ import Footer from "./components/Footer.js";
 import GoGreenBody from "./components/GoGreenBody.js";
 import RestaurantDetails from "./components/RestaurantDetails.js";
 import UserContext from "./utils/helpers/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/redux/appStore.js";
 {
   /* this is your react element */
 }
@@ -29,15 +31,22 @@ const HeaderComponent = () => (
     {elem}
   </>
 );
-const BuyandGrow=lazy(()=>{return import("./pages/BuyandGrow.js")})
+const BuyandGrow = lazy(() => {
+  return import("./pages/BuyandGrow.js");
+});
+const Cart = lazy(() => {
+  return import("./pages/Cart.js");
+});
 const GoGreenComponent = () => {
-  const [user,setUser]=useState("Default user")
+  const [user, setUser] = useState("Default user");
   return (
-    <UserContext.Provider value={{userName:user,setUser}}>
-      <HeaderGoGreen />
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ userName: user, setUser }}>
+        <HeaderGoGreen />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const createRouter = createBrowserRouter([
@@ -62,9 +71,28 @@ const createRouter = createBrowserRouter([
         element: <RestaurantDetails />,
       },
       {
-        path:"/buyAndPlant",
-        element:<Suspense fallback={<h1>Just a display of dynamic bundling using lazy loading/On demand loading/Dynamic Bundling</h1>}><BuyandGrow/></Suspense>
-      }
+        path: "/buyAndPlant",
+        element: (
+          <Suspense
+            fallback={
+              <h1>
+                Just a display of dynamic bundling using lazy loading/On demand
+                loading/Dynamic Bundling
+              </h1>
+            }
+          >
+            <BuyandGrow />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<h1>IS LAZY LOADED</h1>}>
+            <Cart />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

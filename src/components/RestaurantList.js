@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { DISH_URL } from "../utils/constants";
+import { addItems } from "../utils/redux/store-slices/cartSlice";
 const RestaurantList = (props) => {
   const { item } = props;
   return (
@@ -29,13 +31,14 @@ const RestaurantList = (props) => {
   );
 };
 export const isInstock = (RestaurantList) => {
+  const dispatch = useDispatch();
   return (item,index) => {
-    const addToCart=(event)=>{
-      console.log("Added to cart",event);
+    const addToCart=(item)=>{
+      dispatch(addItems(item))
     }
     return (
       <div key={index}>
-        <button className="px-2 m-2 rounded-2xl border border-black float-right text-green-600" onClick={addToCart}>Add+</button>
+        <button className="px-2 m-2 rounded-2xl border border-black float-right text-green-600" onClick={()=>addToCart(item)}>Add+</button>
         <RestaurantList {...item} />
       </div>
     );
